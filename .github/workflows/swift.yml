@@ -17,3 +17,20 @@ jobs:
       run: swift build -v
     - name: Run tests
       run: swift test -v
+
+
+  linux-swift-50:
+     name: Linux (Swift 5.0)
+     runs-on: ubuntu-18.04
+     container: swift:5.0
+     steps:
+     - name: Checkout
+       uses: actions/checkout@v1
+     - name: Make Logs Directory
+       run: mkdir logs
+     - name: Swift Version
+       run: swift --version
+     - name: Build (Release)
+       run: swift build -c release
+     - name: Test (Release)
+       run: swift test --configuration release -Xswiftc -enable-testing
